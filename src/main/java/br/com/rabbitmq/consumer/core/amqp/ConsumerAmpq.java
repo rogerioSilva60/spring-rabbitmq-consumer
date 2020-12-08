@@ -1,4 +1,4 @@
-package br.com.rabbitmq.consumer.core.ampq;
+package br.com.rabbitmq.consumer.core.amqp;
 
 public interface ConsumerAmpq<T> {
 
