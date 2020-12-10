@@ -29,7 +29,7 @@ Obs: Só deve rodar esse comando caso não tenha executado no projeto producer
 
 ## Documentação
 
-Basta acessar a url: http://localhost:8082/swagger-ui.html#/ na máquina que esteja executando o projeto e terá a documentação da api pelo Swagger.
+Basta acessar a url: http://localhost:8082/swagger-ui/index.html#/ na máquina que esteja executando o projeto e terá a documentação da api pelo Swagger.
 
 ![spring-rabbitmq-consumer](https://user-images.githubusercontent.com/23174611/101516675-8706a200-395e-11eb-9ee2-8325f5c97405.png)
 
