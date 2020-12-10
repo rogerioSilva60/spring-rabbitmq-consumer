@@ -2,8 +2,8 @@ package br.com.rabbitmq.consumer.domain.service;
 
 import br.com.rabbitmq.consumer.domain.entity.Comments;
 
-public interface RegisterCommentService {
+public interface RegisterCommentsGenericService {
 
-	Comments save(Comments comment);
+	<T> T save(Comments comments);
 	
 }

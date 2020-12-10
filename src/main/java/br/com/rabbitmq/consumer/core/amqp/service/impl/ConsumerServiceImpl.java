@@ -6,19 +6,21 @@ import org.springframework.stereotype.Service;
 import br.com.rabbitmq.consumer.core.amqp.dto.MessageQueueDto;
 import br.com.rabbitmq.consumer.core.amqp.service.ConsumerService;
 import br.com.rabbitmq.consumer.domain.entity.Comments;
-import br.com.rabbitmq.consumer.domain.service.RegisterCommentService;
+import br.com.rabbitmq.consumer.domain.service.RegisterCommentsGenericService;
+import reactor.core.publisher.Mono;
 
 @Service
 public class ConsumerServiceImpl implements ConsumerService {
 
 	@Autowired
-	private RegisterCommentService registerCommentService;
+	private RegisterCommentsGenericService registerCommentService;
 	
 	@Override
 	public void action(MessageQueueDto message) {
 		Comments comment = new Comments();
 		comment.setText(message.getText());
-		Comments savedComment = registerCommentService.save(comment);
+		Mono<Comments> savedCommentMono = registerCommentService.save(comment);
+		Comments savedComment = savedCommentMono.block();
 		System.out.println(savedComment);
 	}
 

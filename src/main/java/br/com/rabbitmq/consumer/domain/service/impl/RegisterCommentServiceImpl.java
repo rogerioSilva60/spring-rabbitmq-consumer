@@ -6,18 +6,20 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.rabbitmq.consumer.domain.entity.Comments;
 import br.com.rabbitmq.consumer.domain.repository.CommentRepository;
-import br.com.rabbitmq.consumer.domain.service.RegisterCommentService;
+import br.com.rabbitmq.consumer.domain.service.RegisterCommentsGenericService;
+import reactor.core.publisher.Mono;
 
 @Service
-public class RegisterCommentServiceImpl implements RegisterCommentService {
+public class RegisterCommentServiceImpl implements RegisterCommentsGenericService {
 
 	@Autowired
 	private CommentRepository commentRepository;
-	
+
+	@SuppressWarnings("unchecked")
 	@Transactional
 	@Override
-	public Comments save(Comments comment) {
-		Comments savedComment = commentRepository.save(comment);
+	public Mono<Comments> save(Comments comment) {
+		Mono<Comments> savedComment = commentRepository.save(comment);
 		return savedComment;
 	}
 

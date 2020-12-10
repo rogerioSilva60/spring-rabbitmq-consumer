@@ -1,8 +1,12 @@
 package br.com.rabbitmq.consumer.config;
 
+
+import java.util.function.Predicate;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import springfox.documentation.RequestHandler;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -15,12 +19,14 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 @Configuration
 public class SwaggerConfig {
-
+	
 	@Bean
     public Docket docket(){
+		Predicate<RequestHandler> basePackage = RequestHandlerSelectors
+				.basePackage("br.com.rabbitmq.consumer.api.controller");
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("br.com.rabbitmq.consumer.api.controller"))
+                .apis(basePackage)
                 .paths(PathSelectors.any())
                 .build()
                 .pathMapping("/")
